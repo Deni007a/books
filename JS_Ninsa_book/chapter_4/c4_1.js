@@ -1,5 +1,7 @@
 "use strict"
 
+
+
 // видим без "use strict" аргумент можно искуственно изменить
 //Assertion failed: The person is a gardener
 // Assertion failed: The first argument is a gardener

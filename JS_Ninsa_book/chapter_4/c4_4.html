@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Binding a specific context to an event handler</title>
+    <meta charset="utf-8">
+
+
+</head>
+<body>
+<button id="test">Click Me!</button>
+<script >
+   let button = {
+        clicked: false,
+        click(){
+            this.clicked = true;
+            console.assert(!button.clicked,"Кнопка была нажата");
+        }
+    };
+    let elem = document.getElementById("test");
+    elem.addEventListener("click", button.click.bind(button));
+
+
+    // тут мы используем метод bind для создания новой функции как вы видите
+   // boundFunction === button.click не раны друг другу
+    let boundFunction = button.click.bind(button);
+   console.assert(boundFunction === button.click,
+      "Вызов связывания создает совершенно новую функцию");
+   console.log(boundFunction === button.click)
+</script>
+</body>
+</html>
