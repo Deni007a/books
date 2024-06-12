@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chapter2_1</title>
+</head>
+<style>
+    #first {
+        color: green;
+    }
+
+    #second {
+        color: red;
+    }
+</style>
+<body>
+<ul id="first"></ul>
+
+
+<script>
+    // функция записывающее сообщение в элемент
+    function addMessage(element, message) {
+        let messageElement = document.createElement("li");
+        messageElement.textContent = message;
+        element.appendChild(messageElement);
+    }
+
+    let first = document.getElementById("first");
+    addMessage(first, "Page loading");
+
+</script>
+<hr>
+<ul id="second"></ul>
+
+<script>
+
+    //подключить обработчик событий перемещения мыши к телу документа
+    document.body.addEventListener("mousemove", function () {
+        let second = document.getElementById("second");
+        addMessage(second, "Event : mousemove");
+    });
+
+    //подключить обработчик событий кликов к телу документа
+    document.body.addEventListener("click", function () {
+        let second = document.getElementById("second");
+        addMessage(second, "Event : click");
+    });
+
+
+
+</script>
+
+</body>
+</html>

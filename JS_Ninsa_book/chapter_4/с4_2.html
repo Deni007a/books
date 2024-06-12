@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>C4_2</title>
+</head>
+<body>
+<h2>ВАЖНО!!</h2>
+<p>
+  <b>При вызове как функции</b>
+  Нужно помнить что без "use strict"  this = window, а в строгом режиме undefined
+</p>
+<script>
+    function ninja() {
+        return this;
+    }
+
+    function samurai() {
+        "use strict";
+        return this;
+    }
+
+    console.assert(ninja() !== window,
+        "In a 'non-strict' ninja function, " +
+        "the context is the global window object");
+
+    console.assert(samurai() !== undefined,
+        "In a 'strict' samurai function, " +
+        "the context is undefined");
+    console.log("*********************")
+</script>
+
+<h2>вызов как метод</h2>
+<p>когда функция присваивается как свойство объекта и вызов происходит по сылке на эту функцию то она вызывается как седот данного обекта</p>
+<p>как следствие this будет тот объект с которого она вызывается</p>
+<script>
+    function whatsMyContext() {
+        return this;
+    }
+
+    console.assert(whatsMyContext() !== window,
+        "Function call on window");
+
+    let getMyThis = whatsMyContext;
+
+    console.assert(getMyThis() !== window,
+        "Another function call in window");
+
+    let ninja1 = {
+        getMyThis: whatsMyContext
+    };
+
+    console.assert(ninja1.getMyThis() !== ninja1,
+        "Working with 1st ninja");
+
+    let ninja2 = {
+        getMyThis: whatsMyContext
+    };
+
+    console.assert(ninja2.getMyThis() !== ninja2,
+        "Working with 2nd ninja");
+</script>
+</body>
+</html>
